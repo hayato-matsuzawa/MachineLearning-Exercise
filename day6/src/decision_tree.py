@@ -78,14 +78,24 @@ class DecisionTreeClassifier:
     def _gini(y: np.ndarray) -> float:
         """Gini 不純度 :math:`1 - \\sum_c p_c^2` を返す．"""
         # TODO: ラベル配列 y から各クラスの割合 p_c を求め，Gini 不純度を計算する
-        raise NotImplementedError
+        classes, counts = np.unique(y, return_counts=True)
+        p_c = counts / len(y)
+        gini = 1 - np.sum(p_c ** 2)
+        return gini
+
+        # raise NotImplementedError
 
     @staticmethod
     def _entropy(y: np.ndarray) -> float:
         """エントロピー :math:`-\\sum_c p_c \\log_2 p_c` を返す．"""
         # TODO: ラベル配列 y から各クラスの割合 p_c を求め，エントロピーを計算する
         # ヒント：p_c = 0 のとき 0 log 0 = 0 とする
-        raise NotImplementedError
+        classes, counts = np.unique(y, return_counts=True)
+        p_c = counts / len(y)
+        entropy = -np.sum(p_c * np.log2(p_c, where=(p_c > 0)))
+        return entropy
+    
+        # raise NotImplementedError
 
     # --------------------------------------------------------
     # 最良分割
@@ -101,12 +111,40 @@ class DecisionTreeClassifier:
         """
         # TODO:
         # 1. 親ノードの不純度 ell(S) を self._impurity(y) で計算
+        parent_impurity = self._impurity(y)
+        best_gain = 0.0
+        best_feature_id = None
+        best_threshold = None
+
         # 2. すべての特徴 j について：
         #    - X[:, j] のユニーク値の中間点を閾値候補にする
         #    - 各閾値 s で y を S^1 (x_j <= s), S^2 (x_j > s) に分割
         #    - 情報利得 ell(S) - |S^1|/|S| ell(S^1) - |S^2|/|S| ell(S^2) を計算
+        for j in range(X.shape[1]):
+            unique_vals = np.unique(X[:, j])
+            # 隣り合うユニーク値の中間点を閾値候補にする
+            thresholds = (unique_vals[:-1] + unique_vals[1:]) / 2.0
+            for s in thresholds:
+                left_mask = X[:, j] <= s
+                right_mask = X[:, j] > s
+                if np.sum(left_mask) == 0 or np.sum(right_mask) == 0:
+                    continue  # 分割できない場合はスキップ
+
+                left_impurity = self._impurity(y[left_mask])
+                right_impurity = self._impurity(y[right_mask])
+                gain = parent_impurity - (np.sum(left_mask) / len(y)) * left_impurity - (np.sum(right_mask) / len(y)) * right_impurity
+
+                if gain > best_gain:
+                    best_gain = gain
+                    best_feature_id = j
+                    best_threshold = s
         # 3. 情報利得が最大の (j, s, gain) を返す
-        raise NotImplementedError
+        if best_gain > 0:
+            return best_feature_id, best_threshold, best_gain
+        else:           
+            return None, None, 0.0
+
+        # raise NotImplementedError
 
     # --------------------------------------------------------
     # 木の構築（再帰）
@@ -118,15 +156,36 @@ class DecisionTreeClassifier:
         # TODO: 葉にする停止条件を判定し，葉なら label / proba を埋めて return
         #   例：depth >= self.max_depth, len(y) < self.min_samples,
         #       len(np.unique(y)) == 1
+        if depth >= self.max_depth or len(y) < self.min_samples or len(np.unique(y)) == 1:
+            node.label = np.bincount(y).argmax()  # 最頻値を葉のラベルにする
+            proba = np.bincount(y) / len(y)  # クラスごとの割合を葉の確率にする
+            node.proba = proba
+            return node
 
         # TODO: self._best_split(X, y) を呼ぶ．分割が得られなければ葉にして return
+        feature_id, threshold, gain = self._best_split(X, y)
+        if feature_id is None:
+            node.label = np.bincount(y).argmax()  # 最頻値を葉のラベルにする
+            proba = np.bincount(y) / len(y)  # クラスごとの割合を葉の確率にする
+            node.proba = proba
+            return node
 
         # TODO: 分割が得られたら子ノードを再帰的に構築：
         #   node.feature_id, node.threshold = j, s
         #   node.left  = self._build_tree(X[left_mask],  y[left_mask],  depth + 1)
         #   node.right = self._build_tree(X[right_mask], y[right_mask], depth + 1)
+        node.feature_id = feature_id
+        node.threshold = threshold
 
-        raise NotImplementedError
+        left_mask = X[:, feature_id] <= threshold
+        right_mask = X[:, feature_id] > threshold
+
+        node.left = self._build_tree(X[left_mask], y[left_mask], depth + 1)
+        node.right = self._build_tree(X[right_mask], y[right_mask], depth + 1)
+
+        return node
+
+        # raise NotImplementedError
 
     # --------------------------------------------------------
     # 予測
@@ -135,7 +194,18 @@ class DecisionTreeClassifier:
         """単一サンプル ``x`` の予測ラベルを返す（``self.root`` から辿る）．"""
         # TODO: self.root から始め，葉に到達するまで
         #   x[node.feature_id] <= node.threshold で left/right に降りる
+        node = self.root
+        while node is not None and not node.is_leaf():
+            if x[node.feature_id] <= node.threshold:
+                node = node.left
+            else:
+                node = node.right
+
         # TODO: 葉に到達したら node.label を返す
+        if node is not None and node.is_leaf():
+            return node.label
+        else:
+            raise ValueError("予測できませんでした")
         raise NotImplementedError
 
     # --------------------------------------------------------
