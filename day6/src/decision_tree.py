@@ -92,7 +92,8 @@ class DecisionTreeClassifier:
         # ヒント：p_c = 0 のとき 0 log 0 = 0 とする
         classes, counts = np.unique(y, return_counts=True)
         p_c = counts / len(y)
-        entropy = -np.sum(p_c * np.log2(p_c, where=(p_c > 0)))
+        entropy = -np.sum(p_c * np.log2(p_c, out=np.zeros_like(p_c), where=(p_c > 0)))
+
         return entropy
     
         # raise NotImplementedError
