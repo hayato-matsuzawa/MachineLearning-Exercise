@@ -1,0 +1,188 @@
+name: Kaggriculture V9 Universal Anchor Qualification
+
+on:
+  push:
+    branches: [kaggriculture-v9-universal-worker]
+    paths: ['.github/workflows/kaggriculture-v9-universal-anchor.yml']
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/kaggriculture-v9-universal-anchor.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        anchor: [cok_anchor, sota_anchor, balanced, unseen_mix, cok_mix, sota_mix]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: kaggriculture-v9-universal-worker
+      - name: Fetch research tree
+        run: git clone --depth 1 --branch kaggriculture-v9-90pct https://github.com/hayato-matsuzawa/Kaggriculture.git work
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned official engine
+        run: python -m pip install 'kaggle-environments==1.32.7' requests scikit-learn
+      - name: Build anchor source
+        working-directory: work
+        env:
+          ANCHOR_NAME: ${{ matrix.anchor }}
+        run: |
+          python - <<'PY'
+          import json, os, shutil
+          from pathlib import Path
+          name=os.environ['ANCHOR_NAME']
+          candidates=Path('research/v9_screen/candidates')
+          out=Path('artifacts/anchor.py');out.parent.mkdir(parents=True,exist_ok=True)
+          if name=='cok_anchor':
+              shutil.copy2(candidates/'cok'/'main.py',out)
+          elif name=='sota_anchor':
+              shutil.copy2(candidates/'sota_claude'/'main.py',out)
+          else:
+              orders={
+                'balanced': [['HIRE'],['HIRE'],['HIRE'],['HIRE'],['HIRE'],['BUY_ANIMAL','COW',1],['BUY_ANIMAL','SHEEP',3],['BUY_SEED','MELON',8],['BUY_SEED','WHEAT',7],['BUY_PRODUCT','WHEAT',12]],
+                'unseen_mix': [['BUY_PRODUCT','WHEAT',14],['HIRE'],['HIRE'],['HIRE'],['HIRE'],['HIRE'],['BUY_ANIMAL','COW',1],['BUY_ANIMAL','SHEEP',3],['BUY_SEED','MELON',5],['BUY_SEED','WHEAT',5]],
+                'cok_mix': [['HIRE'],['HIRE'],['HIRE'],['HIRE'],['HIRE'],['BUY_ANIMAL','COW',1],['BUY_ANIMAL','SHEEP',2],['BUY_SEED','MELON',12],['BUY_SEED','WHEAT',7],['BUY_PRODUCT','WHEAT',6]],
+                'sota_mix': [['HIRE'],['HIRE'],['HIRE'],['HIRE'],['HIRE'],['BUY_ANIMAL','COW',2],['BUY_ANIMAL','SHEEP',1],['BUY_SEED','MELON',8],['BUY_SEED','WHEAT',11],['BUY_PRODUCT','WHEAT',8]],
+              }[name]
+              action={'farmer':['BUILD_PASTURE'],'hands':[],'market':orders}
+              source='import copy\n_ANCHOR='+repr(action)+'\ndef agent(obs,configuration=None):\n    return copy.deepcopy(_ANCHOR) if int((obs.get("step",0) if isinstance(obs,dict) else getattr(obs,"step",0)) or 0)==0 else {"farmer":["PASS"],"hands":[],"market":[]}\n'
+              out.write_text(source)
+          print(name,out.stat().st_size)
+          PY
+          python -m py_compile artifacts/anchor.py
+      - name: Evaluate three suffixes on pre-newest eras
+        working-directory: work
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/hybrid
+          pids=()
+          for suffix in unseen_current cok sota_claude; do
+            python research/v9_hybrid_eval.py \
+              --anchor artifacts/anchor.py \
+              --suffix research/v9_screen/candidates/${suffix}/main.py \
+              --suffix-name ${suffix} \
+              --decision 1 \
+              --groups public_v18_live mid_teacher_holdout \
+              --cache artifacts/replays-${suffix} \
+              --output artifacts/hybrid/hybrid-d1-${suffix}.json \
+              > artifacts/hybrid/${suffix}.log 2>&1 &
+            pids+=("$!")
+          done
+          rc=0
+          for p in "${pids[@]}"; do wait "$p" || rc=1; done
+          cat artifacts/hybrid/*.log
+          exit "$rc"
+      - name: Train compact leakage-resistant selector
+        working-directory: work
+        env:
+          ANCHOR_NAME: ${{ matrix.anchor }}
+        run: |
+          mkdir -p artifacts/v9
+          python - <<'PY'
+          import json, os, sys
+          from pathlib import Path
+          sys.path.insert(0,str(Path('research').resolve()))
+          import v9_selector_train as m
+          def compact(decisions):
+              out=[]
+              for d in decisions:
+                  for c in range(3): out.append(m.Config(d,'constant',(('candidate',c),)))
+                  for depth in (1,2,3,4,5):
+                      for leaf in (2,4,6,10,14):
+                          out.append(m.Config(d,'dtc',tuple(sorted({'max_depth':depth,'min_samples_leaf':leaf}.items()))))
+              return out
+          m.configs=compact
+          sys.argv=['v9_selector_train.py','--hybrid-reports','artifacts/hybrid','--candidate-dir','research/v9_screen/candidates','--output-dir','artifacts/v9']
+          m.main()
+          p=Path('artifacts/v9/main.py');s=p.read_text();name=os.environ['ANCHOR_NAME']
+          if name=='cok_anchor':
+              s=s.replace('if step<decision:return actions["unseen_current"]','if step<decision:return actions["cok"]')
+          elif name=='sota_anchor':
+              s=s.replace('if step<decision:return actions["unseen_current"]','if step<decision:return actions["sota_claude"]')
+          else:
+              anchor_source=Path('artifacts/anchor.py').read_text()
+              ns={};exec(compile(anchor_source,'anchor.py','exec'),ns);action=ns['_ANCHOR']
+              marker='_ANCHOR_ACTION='+repr(action)+'\n'
+              s=s.replace('_STATE={0:{"selected":None},1:{"selected":None}}',marker+'_STATE={0:{"selected":None},1:{"selected":None}}')
+              s=s.replace('if step<decision:return actions["unseen_current"]','if step<decision:return copy.deepcopy(_ANCHOR_ACTION)')
+          p.write_text(s+'\n_load()\n')
+          PY
+          python -m py_compile artifacts/v9/main.py
+      - name: Run untouched newest qualification once
+        id: newest
+        continue-on-error: true
+        working-directory: work
+        run: python research/benchmark_v21_newest.py --candidate artifacts/v9/main.py --cache artifacts/replays-newest --output artifacts/v9/newest.json --markdown artifacts/v9/newest.md
+      - name: Apply 90 percent and generalization gates
+        if: always()
+        working-directory: work
+        env:
+          ANCHOR_NAME: ${{ matrix.anchor }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          root=Path('artifacts/v9');status={'qualified':False,'anchor':os.environ['ANCHOR_NAME'],'decision':1}
+          if (root/'selector-report.json').exists() and (root/'newest.json').exists():
+              selector=json.loads((root/'selector-report.json').read_text());newest=json.loads((root/'newest.json').read_text())
+              q=newest['summary']['newest_holdout']['replaced_team_opponent'];folds=selector['winner']['folds'];domain=[x for x in folds if x['domain']];secondary=[x for x in folds if not x['domain']]
+              checks={
+                'valid_26':q['valid']==26,
+                'wins_24':q['wins']>=24,
+                'runtime':float(q.get('max_call_ms',0))<1000,
+                'domain_transfer':min(x['win_rate'] for x in domain)>=0.70,
+                'secondary_cv':sum(x['wins'] for x in secondary)/max(1,sum(x['n'] for x in secondary))>=0.78,
+              }
+              status.update({'qualified':all(checks.values()),'checks':checks,'newest':q,'winner':selector['winner'],'reason':'; '.join(k for k,v in checks.items() if not v)})
+          else: status['reason']='missing reports'
+          (root/'qualification-status.json').write_text(json.dumps(status,indent=2,ensure_ascii=False));print(json.dumps(status,indent=2,ensure_ascii=False))
+          PY
+      - name: Self-play and package only if qualified
+        working-directory: work
+        run: |
+          python - <<'PY'
+          import hashlib,json,pathlib,tarfile,time
+          root=pathlib.Path('artifacts/v9');status=json.loads((root/'qualification-status.json').read_text())
+          if not status['qualified']:
+              print('Not qualified; no submission archive created.')
+              raise SystemExit(0)
+          from kaggle_environments import make
+          ns={};src=(root/'main.py').read_text();exec(compile(src,'main.py','exec'),ns);agent=ns['agent'];tm={'max':0.0}
+          def wrapped(obs,configuration=None):
+              t=time.perf_counter()
+              try:return agent(obs,configuration)
+              finally:tm['max']=max(tm['max'],time.perf_counter()-t)
+          env=make('kaggriculture',configuration={'seed':20260821},debug=True);env.run([wrapped,wrapped]);last=env.steps[-1]
+          validation={'statuses':[x.status for x in last],'rewards':[x.reward for x in last],'max_call_ms':1000*tm['max']};(root/'selfplay.json').write_text(json.dumps(validation,indent=2))
+          if validation['statuses']!=['DONE','DONE'] or any(x is None for x in validation['rewards']) or tm['max']>=1: raise SystemExit('validation failed')
+          sub=root/'submission';sub.mkdir();(sub/'main.py').write_text(src);archive=pathlib.Path('artifacts/kaggriculture_v9_'+status['anchor']+'_90pct.tar.gz')
+          with tarfile.open(archive,'w:gz',compresslevel=9) as tf: tf.add(sub/'main.py',arcname='main.py')
+          with tarfile.open(archive,'r:gz') as tf:
+              if tf.getnames()!=['main.py']: raise SystemExit('bad archive')
+          if archive.stat().st_size>104857600: raise SystemExit('too large')
+          status.update({'selfplay':validation,'archive':archive.name,'archive_bytes':archive.stat().st_size,'main_bytes':(root/'main.py').stat().st_size,'sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'engine':'1.32.7','caveat':'Counterfactual closed-loop candidate versus recorded open-loop opponent actions; not a guaranteed live-ladder probability.'})
+          (root/'verification.json').write_text(json.dumps(status,indent=2,ensure_ascii=False));(root/'verification.txt').write_text(f"Kaggriculture V9 {status['anchor']}\nQualified: true\nNewest: {status['newest']['wins']}/{status['newest']['valid']} = {100*status['newest']['win_rate']:.2f}%\nModel: {status['winner']['config']}\nSHA-256: {status['sha256']}\n")
+          print((root/'verification.txt').read_text())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kaggriculture-v9-universal-${{ matrix.anchor }}
+          path: |
+            work/artifacts/kaggriculture_v9_*_90pct.tar.gz
+            work/artifacts/v9
+            work/artifacts/hybrid
+            work/artifacts/anchor.py
+          if-no-files-found: warn
+          retention-days: 30
