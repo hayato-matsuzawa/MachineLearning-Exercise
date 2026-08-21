@@ -18,7 +18,7 @@
     "median_margin": 6605.0,
     "min_margin": -43064.0,
     "max_margin": 164406.0,
-    "max_call_ms": 190.59827599994605
+    "max_call_ms": 254.5114399999875
   },
   "winner": {
     "config": "d1:constant(candidate=1)",
