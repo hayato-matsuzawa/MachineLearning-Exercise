@@ -1,0 +1,83 @@
+name: Kaggriculture V9 Hybrid Summary
+
+on:
+  push:
+    branches: [kaggriculture-v9-worker]
+    paths: ['.github/workflows/kaggriculture-v9-hybrid-summary.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  summary:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_REPO: hayato-matsuzawa/Kaggriculture
+      SOURCE_RUN: '32454928194'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: kaggriculture-v9-worker
+          fetch-depth: 0
+      - name: Download all hybrid artifacts
+        run: |
+          set -euo pipefail
+          mkdir -p zips unpacked kaggriculture-v9-hybrid-summary/reports
+          gh api "repos/${SOURCE_REPO}/actions/runs/${SOURCE_RUN}/artifacts?per_page=100" > index.json
+          python - <<'PY' > wanted.tsv
+          import json
+          for a in json.load(open('index.json')).get('artifacts',[]):
+              if a['name'].startswith('v9-hybrid-d'):
+                  print(f"{a['id']}\t{a['name']}")
+          PY
+          while IFS=$'\t' read -r aid name; do
+            gh api "repos/${SOURCE_REPO}/actions/artifacts/${aid}/zip" > "zips/${name}.zip"
+            mkdir -p "unpacked/${name}"; unzip -q "zips/${name}.zip" -d "unpacked/${name}"
+            find "unpacked/${name}" -name 'hybrid-d*.json' -exec cp {} kaggriculture-v9-hybrid-summary/reports/ \;
+          done < wanted.tsv
+          test "$(find kaggriculture-v9-hybrid-summary/reports -name 'hybrid-d*.json' | wc -l)" -eq 12
+      - name: Aggregate metrics
+        run: |
+          python - <<'PY'
+          import json
+          from collections import defaultdict
+          from pathlib import Path
+          root=Path('kaggriculture-v9-hybrid-summary/reports')
+          candidates=['unseen_current','cok','sota_claude']
+          summary={}
+          for d in (1,4,24,72):
+              reports={c:json.loads((root/f'hybrid-d{d}-{c}.json').read_text()) for c in candidates}
+              by=defaultdict(dict)
+              for c,rp in reports.items():
+                  for r in rp['rows']:
+                      by[(r['group'],int(r['episode_id']),int(r['candidate_seat']))][c]=r
+              out={'groups':{},'feature_mismatches':0}
+              for b in by.values():
+                  vals={json.dumps(r['features'],sort_keys=True) for r in b.values()};out['feature_mismatches']+=int(len(vals)>1)
+              for group in ('public_v18_live','mid_teacher_holdout','all'):
+                  sub={k:v for k,v in by.items() if group=='all' or k[0]==group};singles={}
+                  for c in candidates:
+                      rs=[v[c] for v in sub.values()];valid=[r for r in rs if r['valid']]
+                      singles[c]={'wins':sum(r['win'] for r in valid),'valid':len(valid),'win_rate':sum(r['win'] for r in valid)/max(1,len(valid)),'mean_margin':sum(r['margin'] for r in valid)/max(1,len(valid)),'min_margin':min((r['margin'] for r in valid),default=None),'max_call_ms':max((r['max_call_ms'] for r in rs),default=0)}
+                  oracle=[max([r for r in v.values() if r['valid']],key=lambda r:r['margin']) for v in sub.values()]
+                  out['groups'][group]={'singles':singles,'oracle':{'wins':sum(r['win'] for r in oracle),'valid':len(oracle),'win_rate':sum(r['win'] for r in oracle)/max(1,len(oracle)),'mean_margin':sum(r['margin'] for r in oracle)/max(1,len(oracle)),'min_margin':min((r['margin'] for r in oracle),default=None)}}
+              summary[str(d)]=out
+          Path('kaggriculture-v9-hybrid-summary/summary.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False))
+          lines=['# Kaggriculture V9 hybrid summary','']
+          for d,x in summary.items():
+              lines += [f'## Decision {d}',f"feature mismatches: {x['feature_mismatches']}"]
+              for g,m in x['groups'].items():
+                  cells='; '.join(f"{c}={v['wins']}/{v['valid']}" for c,v in m['singles'].items())
+                  o=m['oracle'];lines.append(f"- {g}: {cells}; oracle={o['wins']}/{o['valid']} ({100*o['win_rate']:.2f}%)")
+              lines.append('')
+          Path('kaggriculture-v9-hybrid-summary/summary.md').write_text('\n'.join(lines)+'\n');print(Path('kaggriculture-v9-hybrid-summary/summary.md').read_text())
+          PY
+      - name: Commit summary
+        run: |
+          git fetch origin kaggriculture-v9-worker; git reset --hard origin/kaggriculture-v9-worker
+          git config user.name github-actions[bot];git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture-v9-hybrid-summary
+          git commit -m 'Record Kaggriculture V9 hybrid summary'
+          git push origin HEAD:kaggriculture-v9-worker
