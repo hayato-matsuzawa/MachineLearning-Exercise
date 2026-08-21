@@ -4,6 +4,9 @@ on:
   push:
     branches: [kaggriculture-v9-worker]
     paths: ['.github/workflows/kaggriculture-v9-hybrid-summary.yml']
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/kaggriculture-v9-hybrid-summary.yml']
   workflow_dispatch:
 
 permissions:
