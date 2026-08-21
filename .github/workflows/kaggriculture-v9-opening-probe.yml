@@ -1,0 +1,59 @@
+name: Kaggriculture V9 Opening Probe
+
+on:
+  push:
+    branches: [kaggriculture-v9-worker]
+    paths: ['.github/workflows/kaggriculture-v9-opening-probe.yml']
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/kaggriculture-v9-opening-probe.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: kaggriculture-v9-worker
+          fetch-depth: 0
+      - name: Fetch candidate sources
+        run: git clone --depth 1 --branch kaggriculture-v9-90pct https://github.com/hayato-matsuzawa/Kaggriculture.git work
+      - name: Probe first eight actions against evolving self-only mock state
+        run: |
+          python - <<'PY'
+          import copy,json,runpy,sys,traceback
+          from pathlib import Path
+          candidates=['unseen_current','cok','sota_claude']
+          base_farm={'farmer':[4,4],'hands':[],'hires_today':0,'money':3000.0,'tiles':[[None]*5+['LOCKED']*5 for _ in range(5)]+[['LOCKED']*10 for _ in range(5)],'unlocked_quadrants':['NW']}
+          def obs(seat=0,step=0):return {'player':seat,'step':step,'day':step//24,'hour':step%24,'farms':[copy.deepcopy(base_farm),copy.deepcopy(base_farm)],'private':{'inventories':[{}],'seeds':{x:0 for x in ('WHEAT','CARROT','TOMATO','STRAWBERRY','MELON')},'shed':{x:0 for x in ('WHEAT','CARROT','TOMATO','STRAWBERRY','MELON','EGG','MILK','WOOL','FERTILIZER','GOOSE','COW','SHEEP')}},'market':{'inventory':{x:10000 for x in ('WHEAT','CARROT','TOMATO','STRAWBERRY','MELON','EGG','MILK','WOOL','FERTILIZER')},'prices':{'WHEAT':25,'CARROT':35,'TOMATO':60,'STRAWBERRY':120,'MELON':250,'EGG':50,'MILK':160,'WOOL':200,'FERTILIZER':100}},'town':{'unlocked_shops':[]},'remainingOverageTime':60}
+          out={}
+          for name in candidates:
+              path=Path(f'work/research/v9_screen/candidates/{name}/main.py')
+              ns={}
+              try:
+                  exec(compile(path.read_text(),str(path),'exec'),ns);fn=ns['agent'];rows=[]
+                  for seat in (0,1):
+                      seat_rows=[]
+                      for step in range(8):
+                          o=obs(seat,step)
+                          try:
+                              try:a=fn(o,{})
+                              except TypeError:a=fn(o)
+                              seat_rows.append(a)
+                          except Exception as e:seat_rows.append({'error':repr(e),'trace':traceback.format_exc()})
+                      rows.append({'seat':seat,'actions':seat_rows})
+                  out[name]=rows
+              except Exception as e:out[name]={'load_error':repr(e),'trace':traceback.format_exc()}
+          Path('kaggriculture-v9-opening-probe.json').write_text(json.dumps(out,indent=2,ensure_ascii=False));print(json.dumps(out,indent=2,ensure_ascii=False))
+          PY
+      - name: Commit probe
+        run: |
+          git fetch origin kaggriculture-v9-worker;git reset --hard origin/kaggriculture-v9-worker
+          git config user.name github-actions[bot];git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture-v9-opening-probe.json
+          git commit -m 'Record Kaggriculture V9 opening probe'
+          git push origin HEAD:kaggriculture-v9-worker
