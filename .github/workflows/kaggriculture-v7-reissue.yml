@@ -1,0 +1,117 @@
+name: Kaggriculture V7 Reissue
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/kaggriculture-v7-reissue.yml'
+      - 'kaggriculture-reissue-trigger.txt'
+      - 'source/main.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: kaggriculture-v7-reissue
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify authenticated source
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f source/main.py
+          test "$(wc -c < source/main.py)" -eq 61506
+          grep -q '^# Kaggriculture v7 - safe day-6 replanning' source/main.py
+          python -m py_compile source/main.py
+          python - <<'PY'
+          from pathlib import Path
+          source = Path('source/main.py').read_text(encoding='utf-8')
+          namespace = {}
+          exec(compile(source, 'main.py', 'exec'), namespace)
+          assert callable(namespace.get('agent'))
+          policy = namespace['_load']()
+          assert isinstance(policy, dict)
+          assert 'BASE' in policy
+          assert len(policy['BASE']) >= 720
+          print('source validated:', len(source.encode('utf-8')), 'bytes; routes:', sorted(policy))
+          PY
+      - name: Create deterministic submission archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf out release
+          mkdir -p out release
+          cp source/main.py out/main.py
+          python - <<'PY'
+          from pathlib import Path
+          import gzip, hashlib, io, json, tarfile
+
+          source = Path('out/main.py')
+          archive = Path('release/kaggriculture_v7_safe_replan_reissued.tar.gz')
+          payload = source.read_bytes()
+
+          tar_buffer = io.BytesIO()
+          with tarfile.open(fileobj=tar_buffer, mode='w') as tf:
+              info = tarfile.TarInfo('main.py')
+              info.size = len(payload)
+              info.mtime = 0
+              info.mode = 0o644
+              info.uid = 0
+              info.gid = 0
+              info.uname = ''
+              info.gname = ''
+              tf.addfile(info, io.BytesIO(payload))
+          with archive.open('wb') as raw:
+              with gzip.GzipFile(filename='', mode='wb', fileobj=raw, compresslevel=9, mtime=0) as gz:
+                  gz.write(tar_buffer.getvalue())
+
+          with tarfile.open(archive, 'r:gz') as tf:
+              assert tf.getnames() == ['main.py']
+              restored = tf.extractfile('main.py').read()
+          assert restored == payload
+
+          report = {
+              'policy': 'Kaggriculture v7 safe day-6 replanning',
+              'source_size': len(payload),
+              'archive_size': archive.stat().st_size,
+              'source_sha256': hashlib.sha256(payload).hexdigest(),
+              'archive_sha256': hashlib.sha256(archive.read_bytes()).hexdigest(),
+              'archive_members': ['main.py'],
+              'historical_verified_total': '189/243 (77.78%)',
+              'historical_verified_holdout': '67/85 (78.82%)',
+              'note': 'Faithful reissue of the verified v7 source. This is not the previously claimed unverified 85% model.'
+          }
+          Path('release/kaggriculture_v7_safe_replan_reissued_verification.json').write_text(
+              json.dumps(report, indent=2) + '\n', encoding='utf-8'
+          )
+          print(json.dumps(report, indent=2))
+          PY
+      - name: Publish files on reissue branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f release/kaggriculture_v7_safe_replan_reissued.tar.gz release/kaggriculture_v7_safe_replan_reissued_verification.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish verified Kaggriculture v7 reissue archive'
+            git push origin HEAD:kaggriculture-v7-reissue
+          fi
+      - name: Upload reissue bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: kaggriculture-v7-safe-replan-reissued
+          path: |
+            release/kaggriculture_v7_safe_replan_reissued.tar.gz
+            release/kaggriculture_v7_safe_replan_reissued_verification.json
+          if-no-files-found: error
+          retention-days: 7

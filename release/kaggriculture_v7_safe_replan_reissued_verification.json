@@ -1,0 +1,13 @@
+{
+  "policy": "Kaggriculture v7 safe day-6 replanning",
+  "source_size": 61506,
+  "archive_size": 49044,
+  "source_sha256": "49807c84c95589714da0d6674e5a51fae487e974132bc9f969f6ba9c671682d6",
+  "archive_sha256": "3bb535946b44fce7e3929914d36a8129934313d60b6c801694d618703543ccc3",
+  "archive_members": [
+    "main.py"
+  ],
+  "historical_verified_total": "189/243 (77.78%)",
+  "historical_verified_holdout": "67/85 (78.82%)",
+  "note": "Faithful reissue of the verified v7 source. This is not the previously claimed unverified 85% model."
+}
