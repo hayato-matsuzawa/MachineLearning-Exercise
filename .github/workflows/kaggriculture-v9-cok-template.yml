@@ -1,0 +1,151 @@
+name: Kaggriculture V9 COK Template Qualification
+
+on:
+  push:
+    branches: [kaggriculture-v9-universal-worker]
+    paths: ['.github/workflows/kaggriculture-v9-cok-template.yml']
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/kaggriculture-v9-cok-template.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: kaggriculture-v9-universal-worker
+      - name: Fetch research tree
+        run: git clone --depth 1 --branch kaggriculture-v9-90pct https://github.com/hayato-matsuzawa/Kaggriculture.git work
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned official engine
+        run: python -m pip install 'kaggle-environments==1.32.7' requests
+      - name: Extract old COK-compatible templates and generate agents
+        working-directory: work
+        run: |
+          mkdir -p artifacts/replays artifacts/template-agents
+          python - <<'PY'
+          import base64,collections,hashlib,json,sys,zlib
+          from pathlib import Path
+          sys.path.insert(0,str(Path('research').resolve()));import benchmark_v21 as b
+          groups={k:b.EPISODE_GROUPS[k] for k in ('public_v18_live','mid_teacher_holdout')}
+          replays={}
+          for g,eps in groups.items():
+              replays[g]=[]
+              for i,ep in enumerate(eps,1):
+                  print('download',g,i,len(eps),ep,flush=True);replays[g].append(b.download_replay(ep,Path('artifacts/replays')))
+          def tile_counts(farm):
+              c=collections.Counter()
+              for row in farm.get('tiles',[]) or []:
+                  for t in row or []:
+                      if isinstance(t,dict):c[t.get('animal') or t.get('crop') or t.get('kind')]+=1
+              return c
+          def compatible(d,seat):
+              if len(d.get('steps',[]))<73:return False
+              try:
+                  o1=d['steps'][1][seat]['observation'];f1=o1['farms'][seat]
+                  o24=d['steps'][24][seat]['observation'];f24=o24['farms'][seat];c=tile_counts(f24)
+                  center=f1['tiles'][4][4]
+                  return len(f1.get('hands',[]))==5 and len(f1.get('unlocked_quadrants',[]))==1 and float(f1.get('money',9999))<180 and isinstance(center,dict) and center.get('kind')=='PASTURE' and c['WHEAT']==7 and c['MELON']==12 and c['COW']==2 and c['SHEEP']==2
+              except Exception:return False
+          def extract(source_groups):
+              pool=collections.defaultdict(list);seen=set()
+              for g in source_groups:
+                  for d in replays[g]:
+                      teams=list(d['info'].get('TeamNames') or []);statuses=d.get('statuses',[])
+                      for seat in (0,1):
+                          if len(statuses)>seat and statuses[seat]!='DONE':continue
+                          if not compatible(d,seat):continue
+                          reward=d['rewards'][seat]
+                          if reward is None:continue
+                          acts=[(s[seat].get('action') or {'farmer':['PASS'],'hands':[],'market':[]}) for s in d['steps']]
+                          h=hashlib.sha256(json.dumps(acts,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+                          if h in seen:continue
+                          seen.add(h)
+                          shops=list(d['steps'][72][seat]['observation'].get('town',{}).get('unlocked_shops',[]));first=shops[0] if shops else None
+                          pool[first].append({'episode':d['info']['EpisodeId'],'seat':seat,'team':teams[seat] if seat<len(teams) else None,'reward':float(reward),'actions':acts,'hash':h})
+              return {shop:max(rows,key=lambda x:x['reward']) for shop,rows in pool.items() if shop}
+          cok_src=Path('research/v9_screen/candidates/cok/main.py').read_text();cok_blob=base64.b85encode(zlib.compress(cok_src.encode(),9)).decode()
+          def build(name,source_groups):
+              chosen=extract(source_groups);print(name,'shops',{k:(v['episode'],v['team'],v['reward']) for k,v in chosen.items()},flush=True)
+              payload={k:v['actions'] for k,v in chosen.items()};blob=base64.b85encode(zlib.compress(json.dumps(payload,separators=(',',':')).encode(),9)).decode()
+              source=f'''# COK-compatible first-shop trajectory policy\nimport base64,copy,json,zlib\n_NS={{}}\nexec(compile(zlib.decompress(base64.b85decode({cok_blob!r})).decode(),"<cok-base>","exec"),_NS)\n_BASE=_NS["agent"]\n_TEMPLATES=json.loads(zlib.decompress(base64.b85decode({blob!r})).decode())\n\ndef _get(o,k,d=None):\n    try:return o.get(k,d)\n    except Exception:\n        try:return getattr(o,k)\n        except Exception:return d\n\ndef _base(obs,configuration):\n    try:\n        try:r=_BASE(obs,configuration)\n        except TypeError:r=_BASE(obs)\n        return copy.deepcopy(r) if isinstance(r,dict) else {{"farmer":["PASS"],"hands":[],"market":[]}}\n    except Exception:return {{"farmer":["PASS"],"hands":[],"market":[]}}\n\ndef agent(obs,configuration=None):\n    step=int(_get(obs,"step",0) or 0);t=step+1;base=_base(obs,configuration)\n    town=_get(obs,"town",{{}}) or {{}};shops=_get(town,"unlocked_shops",[]) or [];first=shops[0] if shops else None\n    if t<=72 or first not in _TEMPLATES:return base\n    seq=_TEMPLATES[first]\n    if t>=len(seq):return base\n    a=copy.deepcopy(seq[t]);pid=int(_get(obs,"player",0) or 0);farms=_get(obs,"farms",[]) or [];n=len((farms[pid].get("hands",[]) if pid<len(farms) and isinstance(farms[pid],dict) else []) or []);hands=a.get("hands",[]) if isinstance(a,dict) else [];a["hands"]=[list(hands[i]) if i<len(hands) and isinstance(hands[i],list) else ["PASS"] for i in range(n)]\n    return a\n'''
+              p=Path('artifacts/template-agents')/f'{name}.py';p.write_text(source);Path('artifacts/template-agents')/f'{name}-sources.json';(Path('artifacts/template-agents')/f'{name}-sources.json').write_text(json.dumps({k:{x:y for x,y in v.items() if x!='actions'} for k,v in chosen.items()},indent=2,ensure_ascii=False))
+          build('public_only',['public_v18_live']);build('mid_only',['mid_teacher_holdout']);build('all_old',['public_v18_live','mid_teacher_holdout'])
+          PY
+          python -m py_compile artifacts/template-agents/*.py
+      - name: Cross-era evaluation without newest leakage
+        working-directory: work
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/cross
+          python research/benchmark_v9_train.py --candidate artifacts/template-agents/public_only.py --cache artifacts/cache-public --output artifacts/cross/public-library.json --markdown artifacts/cross/public-library.md > artifacts/cross/public-library.log 2>&1 & p1=$!
+          python research/benchmark_v9_train.py --candidate artifacts/template-agents/mid_only.py --cache artifacts/cache-mid --output artifacts/cross/mid-library.json --markdown artifacts/cross/mid-library.md > artifacts/cross/mid-library.log 2>&1 & p2=$!
+          rc=0;wait $p1||rc=1;wait $p2||rc=1;cat artifacts/cross/*.log;exit $rc
+      - name: Enforce cross-era gates before newest
+        working-directory: work
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('artifacts/cross/public-library.json').read_text())['summary']['mid_teacher_holdout']['replaced_team_opponent']
+          m=json.loads(Path('artifacts/cross/mid-library.json').read_text())['summary']['public_v18_live']['replaced_team_opponent']
+          status={'public_to_mid':p,'mid_to_public':m,'passed':p['valid']==40 and m['valid']==54 and p['win_rate']>=0.70 and m['win_rate']>=0.70}
+          Path('artifacts/cross/cross-era-status.json').write_text(json.dumps(status,indent=2));print(json.dumps(status,indent=2))
+          if not status['passed']:raise SystemExit('cross-era gate failed')
+          PY
+      - name: Untouched newest qualification
+        id: newest
+        continue-on-error: true
+        working-directory: work
+        run: python research/benchmark_v21_newest.py --candidate artifacts/template-agents/all_old.py --cache artifacts/cache-newest --output artifacts/newest.json --markdown artifacts/newest.md
+      - name: Gate, self-play, package
+        if: always()
+        working-directory: work
+        run: |
+          python - <<'PY'
+          import hashlib,json,pathlib,tarfile,time
+          root=pathlib.Path('artifacts');status={'qualified':False,'model':'COK-compatible first-shop templates extracted only from pre-newest replays'}
+          if (root/'cross/cross-era-status.json').exists() and (root/'newest.json').exists():
+              cross=json.loads((root/'cross/cross-era-status.json').read_text());new=json.loads((root/'newest.json').read_text());q=new['summary']['newest_holdout']['replaced_team_opponent'];checks={'cross_era':cross['passed'],'valid_26':q['valid']==26,'wins_24':q['wins']>=24,'runtime':float(q.get('max_call_ms',0))<1000};status.update({'qualified':all(checks.values()),'checks':checks,'cross_era':cross,'newest':q,'reason':'; '.join(k for k,v in checks.items() if not v)})
+          else:status['reason']='missing reports'
+          (root/'qualification-status.json').write_text(json.dumps(status,indent=2,ensure_ascii=False));print(json.dumps(status,indent=2,ensure_ascii=False))
+          if not status['qualified']:raise SystemExit(0)
+          from kaggle_environments import make
+          src=(root/'template-agents/all_old.py').read_text();ns={};exec(compile(src,'main.py','exec'),ns);agent=ns['agent'];tm={'max':0.0}
+          def a(obs,configuration=None):
+              t=time.perf_counter()
+              try:return agent(obs,configuration)
+              finally:tm['max']=max(tm['max'],time.perf_counter()-t)
+          env=make('kaggriculture',configuration={'seed':20260821},debug=True);env.run([a,a]);last=env.steps[-1];v={'statuses':[x.status for x in last],'rewards':[x.reward for x in last],'max_call_ms':1000*tm['max']};(root/'selfplay.json').write_text(json.dumps(v,indent=2))
+          if v['statuses']!=['DONE','DONE'] or any(x is None for x in v['rewards']) or tm['max']>=1:raise SystemExit('validation failed')
+          sub=root/'submission';sub.mkdir();(sub/'main.py').write_text(src);archive=root/'kaggriculture_v9_cok_templates_90pct.tar.gz'
+          with tarfile.open(archive,'w:gz',compresslevel=9) as tf:tf.add(sub/'main.py',arcname='main.py')
+          with tarfile.open(archive,'r:gz') as tf:
+              if tf.getnames()!=['main.py']:raise SystemExit('bad archive')
+          if archive.stat().st_size>104857600:raise SystemExit('too large')
+          status.update({'selfplay':v,'archive':archive.name,'archive_bytes':archive.stat().st_size,'main_bytes':len(src.encode()),'sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'engine':'1.32.7','caveat':'Counterfactual closed-loop candidate versus recorded open-loop opponent actions; not a guaranteed live-ladder probability.'});(root/'verification.json').write_text(json.dumps(status,indent=2,ensure_ascii=False));(root/'verification.txt').write_text(f"Kaggriculture V9 COK templates\nQualified: true\nNewest: {q['wins']}/{q['valid']} = {100*q['win_rate']:.2f}%\nSHA-256: {status['sha256']}\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kaggriculture-v9-cok-template-result
+          path: |
+            work/artifacts/kaggriculture_v9_cok_templates_90pct.tar.gz
+            work/artifacts/qualification-status.json
+            work/artifacts/verification.json
+            work/artifacts/verification.txt
+            work/artifacts/newest.json
+            work/artifacts/newest.md
+            work/artifacts/cross
+            work/artifacts/template-agents
+          if-no-files-found: warn
+          retention-days: 30
