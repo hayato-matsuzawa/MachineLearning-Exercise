@@ -1,0 +1,50 @@
+name: Kaggriculture V9 Opponent Fingerprints
+
+on:
+  push:
+    branches: [kaggriculture-v9-universal-worker]
+    paths: ['.github/workflows/kaggriculture-v9-opponent-fingerprints.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: kaggriculture-v9-universal-worker
+          fetch-depth: 0
+      - name: Download and summarize public replays
+        run: |
+          python - <<'PY'
+          import json, urllib.request, time
+          from pathlib import Path
+          episodes=[94310456,94355263,94437841,94439800,94450041,94450953,94458225,94478362,94568538,94617605,94636231,94711805,94726918]
+          candidate_names={'Matsu','tetsuya'}
+          rows=[]
+          for ep in episodes:
+              with urllib.request.urlopen(f'https://www.kaggle.com/competitions/episodes/{ep}/replay.json',timeout=90) as r:d=json.load(r)
+              teams=list(d['info'].get('TeamNames') or [])
+              replaced=next((i for i,n in enumerate(teams) if n in candidate_names),0)
+              opp=1-replaced
+              for step in (1,2,4,24,72):
+                  s=d['steps'][min(step,len(d['steps'])-1)][opp]['observation'];farm=s['farms'][opp]
+                  counts={}
+                  for row in farm.get('tiles',[]):
+                      for tile in row:
+                          if isinstance(tile,dict):
+                              k=tile.get('animal') or tile.get('crop') or tile.get('kind');counts[k]=counts.get(k,0)+1
+                  rows.append({'episode':ep,'teams':teams,'replaced_seat':replaced,'opponent_seat':opp,'opponent':teams[opp],'step':step,'money':farm.get('money'),'hands':len(farm.get('hands',[])),'lands':len(farm.get('unlocked_quadrants',[])),'counts':counts,'shops':s.get('town',{}).get('unlocked_shops',[]),'market_prices':s.get('market',{}).get('prices',{})})
+              time.sleep(.1)
+          Path('kaggriculture-v9-opponent-fingerprints.json').write_text(json.dumps(rows,indent=2,ensure_ascii=False));print(json.dumps(rows,indent=2,ensure_ascii=False))
+          PY
+      - name: Commit fingerprints
+        run: |
+          git fetch origin kaggriculture-v9-universal-worker;git reset --hard origin/kaggriculture-v9-universal-worker
+          git config user.name github-actions[bot];git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture-v9-opponent-fingerprints.json
+          git commit -m 'Record newest opponent opening fingerprints'
+          git push origin HEAD:kaggriculture-v9-universal-worker
