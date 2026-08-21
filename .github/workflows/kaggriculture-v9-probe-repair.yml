@@ -1,0 +1,159 @@
+name: Kaggriculture V9 Probe Repair Qualification
+
+on:
+  push:
+    branches: [kaggriculture-v9-universal-worker]
+    paths: ['.github/workflows/kaggriculture-v9-probe-repair.yml']
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/kaggriculture-v9-probe-repair.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        probe: [probe2, probe5, probe5_wheat]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: kaggriculture-v9-universal-worker
+      - name: Fetch research tree
+        run: git clone --depth 1 --branch kaggriculture-v9-90pct https://github.com/hayato-matsuzawa/Kaggriculture.git work
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned official engine
+        run: python -m pip install 'kaggle-environments==1.32.7' requests scikit-learn
+      - name: Build probe anchor and repaired candidate wrappers
+        working-directory: work
+        env:
+          PROBE: ${{ matrix.probe }}
+        run: |
+          python - <<'PY'
+          import base64, json, os, zlib
+          from pathlib import Path
+          probe=os.environ['PROBE'];root=Path('artifacts');root.mkdir(exist_ok=True)
+          hires=2 if probe=='probe2' else 5
+          market=[['HIRE'] for _ in range(hires)]
+          if probe=='probe5_wheat':market.append(['BUY_PRODUCT','WHEAT',6])
+          anchor={'farmer':['BUILD_PASTURE'],'hands':[],'market':market}
+          Path('artifacts/anchor.py').write_text('import copy\n_ANCHOR='+repr(anchor)+'\ndef agent(obs,configuration=None):\n    step=int((obs.get("step",0) if isinstance(obs,dict) else getattr(obs,"step",0)) or 0)\n    return copy.deepcopy(_ANCHOR) if step==0 else {"farmer":["PASS"],"hands":[],"market":[]}\n')
+          targets={
+            'unseen_current':{'hands':5,'shed':{'WHEAT':14,'COW':1,'SHEEP':4},'seeds':{'MELON':5,'WHEAT':5}},
+            'cok':{'hands':5,'shed':{'WHEAT':6,'COW':2,'SHEEP':2},'seeds':{'MELON':12,'WHEAT':7}},
+            'sota_claude':{'hands':2,'shed':{'COW':1},'seeds':{'MELON':6,'WHEAT':6}},
+          }
+          wrappers=Path('artifacts/wrappers');wrappers.mkdir()
+          for name,target in targets.items():
+              src=Path(f'research/v9_screen/candidates/{name}/main.py').read_text();blob=base64.b85encode(zlib.compress(src.encode(),9)).decode()
+              code=f'''import base64,copy,zlib\n_NS={{}}\nexec(compile(zlib.decompress(base64.b85decode({blob!r})).decode(),"<base-{name}>","exec"),_NS)\n_BASE=_NS["agent"]\n_TARGET={target!r}\n\ndef _get(o,k,d=None):\n    try:return o.get(k,d)\n    except Exception:\n        try:return getattr(o,k)\n        except Exception:return d\n\ndef _call(obs,configuration):\n    try:\n        try:r=_BASE(obs,configuration)\n        except TypeError:r=_BASE(obs)\n        return copy.deepcopy(r) if isinstance(r,dict) else {{"farmer":["PASS"],"hands":[],"market":[]}}\n    except Exception:return {{"farmer":["PASS"],"hands":[],"market":[]}}\n\ndef _repair_orders(obs):\n    private=_get(obs,"private",{{}}) or {{}};shed=private.get("shed",{{}}) if isinstance(private,dict) else {{}};seeds=private.get("seeds",{{}}) if isinstance(private,dict) else {{}}\n    pid=int(_get(obs,"player",0) or 0);farms=_get(obs,"farms",[]) or [];hands=len((farms[pid].get("hands",[]) if pid<len(farms) and isinstance(farms[pid],dict) else []) or [])\n    orders=[]\n    for _ in range(max(0,int(_TARGET["hands"])-hands)):orders.append(["HIRE"])\n    for item,want in _TARGET["shed"].items():\n        have=int(shed.get(item,0) or 0);need=max(0,int(want)-have)\n        if not need:continue\n        if item in ("COW","SHEEP","GOOSE"):orders.append(["BUY_ANIMAL",item,need])\n        else:orders.append(["BUY_PRODUCT",item,need])\n    for item,want in _TARGET["seeds"].items():\n        have=int(seeds.get(item,0) or 0);need=max(0,int(want)-have)\n        if need:orders.append(["BUY_SEED",item,need])\n    return orders[:10]\n\ndef agent(obs,configuration=None):\n    step=int(_get(obs,"step",0) or 0);a=_call(obs,configuration)\n    pid=int(_get(obs,"player",0) or 0);farms=_get(obs,"farms",[]) or [];n=len((farms[pid].get("hands",[]) if pid<len(farms) and isinstance(farms[pid],dict) else []) or [])\n    hands=a.get("hands",[]) if isinstance(a,dict) else [];a["hands"]=[list(hands[i]) if i<len(hands) and isinstance(hands[i],list) else ["PASS"] for i in range(n)]\n    if step==1:\n        a["market"]=_repair_orders(obs)\n        f=a.get("farmer",["PASS"])\n        if isinstance(f,list) and f and f[0]=="PICKUP":\n            item=f[1] if len(f)>1 else None;private=_get(obs,"private",{{}}) or {{}};shed=private.get("shed",{{}}) if isinstance(private,dict) else {{}}\n            if int(shed.get(item,0) or 0)<=0:a["farmer"]=["PASS"]\n    return a\n'''
+              (wrappers/f'{name}.py').write_text(code)
+          Path('artifacts/anchor-action.json').write_text(json.dumps(anchor))
+          PY
+          python -m py_compile artifacts/anchor.py artifacts/wrappers/*.py
+      - name: Evaluate repaired suffixes on pre-newest eras
+        working-directory: work
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/hybrid
+          pids=()
+          for suffix in unseen_current cok sota_claude; do
+            python research/v9_hybrid_eval.py \
+              --anchor artifacts/anchor.py \
+              --suffix artifacts/wrappers/${suffix}.py \
+              --suffix-name ${suffix} \
+              --decision 1 \
+              --groups public_v18_live mid_teacher_holdout \
+              --cache artifacts/replays-${suffix} \
+              --output artifacts/hybrid/hybrid-d1-${suffix}.json \
+              > artifacts/hybrid/${suffix}.log 2>&1 &
+            pids+=("$!")
+          done
+          rc=0;for p in "${pids[@]}";do wait "$p"||rc=1;done;cat artifacts/hybrid/*.log;exit "$rc"
+      - name: Train compact leakage-resistant selector
+        working-directory: work
+        run: |
+          mkdir -p artifacts/v9/candidates
+          cp artifacts/wrappers/unseen_current.py artifacts/v9/candidates/unseen_current.py
+          cp artifacts/wrappers/cok.py artifacts/v9/candidates/cok.py
+          cp artifacts/wrappers/sota_claude.py artifacts/v9/candidates/sota_claude.py
+          mkdir -p artifacts/candidate-dir/unseen_current artifacts/candidate-dir/cok artifacts/candidate-dir/sota_claude
+          cp artifacts/wrappers/unseen_current.py artifacts/candidate-dir/unseen_current/main.py
+          cp artifacts/wrappers/cok.py artifacts/candidate-dir/cok/main.py
+          cp artifacts/wrappers/sota_claude.py artifacts/candidate-dir/sota_claude/main.py
+          python - <<'PY'
+          import json,sys
+          from pathlib import Path
+          sys.path.insert(0,str(Path('research').resolve()));import v9_selector_train as m
+          def compact(ds):
+              out=[]
+              for d in ds:
+                  for c in range(3):out.append(m.Config(d,'constant',(('candidate',c),)))
+                  for depth in (1,2,3,4,5):
+                      for leaf in (2,4,6,10,14):out.append(m.Config(d,'dtc',tuple(sorted({'max_depth':depth,'min_samples_leaf':leaf}.items()))))
+              return out
+          m.configs=compact
+          sys.argv=['v9_selector_train.py','--hybrid-reports','artifacts/hybrid','--candidate-dir','artifacts/candidate-dir','--output-dir','artifacts/v9'];m.main()
+          p=Path('artifacts/v9/main.py');s=p.read_text();action=json.loads(Path('artifacts/anchor-action.json').read_text())
+          s=s.replace('_STATE={0:{"selected":None},1:{"selected":None}}','_ANCHOR_ACTION='+repr(action)+'\n_STATE={0:{"selected":None},1:{"selected":None}}')
+          s=s.replace('if step<decision:return actions["unseen_current"]','if step<decision:return copy.deepcopy(_ANCHOR_ACTION)')
+          p.write_text(s+'\n_load()\n')
+          PY
+          python -m py_compile artifacts/v9/main.py
+      - name: Untouched newest qualification
+        id: newest
+        continue-on-error: true
+        working-directory: work
+        run: python research/benchmark_v21_newest.py --candidate artifacts/v9/main.py --cache artifacts/replays-newest --output artifacts/v9/newest.json --markdown artifacts/v9/newest.md
+      - name: Gate, validate and package
+        if: always()
+        working-directory: work
+        env:
+          PROBE: ${{ matrix.probe }}
+        run: |
+          python - <<'PY'
+          import hashlib,json,os,pathlib,tarfile,time
+          root=pathlib.Path('artifacts/v9');status={'qualified':False,'probe':os.environ['PROBE'],'decision':1}
+          if (root/'selector-report.json').exists() and (root/'newest.json').exists():
+              s=json.loads((root/'selector-report.json').read_text());n=json.loads((root/'newest.json').read_text());q=n['summary']['newest_holdout']['replaced_team_opponent'];folds=s['winner']['folds'];domain=[x for x in folds if x['domain']];secondary=[x for x in folds if not x['domain']]
+              checks={'valid_26':q['valid']==26,'wins_24':q['wins']>=24,'runtime':float(q.get('max_call_ms',0))<1000,'domain_transfer':min(x['win_rate'] for x in domain)>=0.70,'secondary_cv':sum(x['wins'] for x in secondary)/max(1,sum(x['n'] for x in secondary))>=0.78}
+              status.update({'qualified':all(checks.values()),'checks':checks,'newest':q,'winner':s['winner'],'reason':'; '.join(k for k,v in checks.items() if not v)})
+          else:status['reason']='missing reports'
+          (root/'qualification-status.json').write_text(json.dumps(status,indent=2,ensure_ascii=False));print(json.dumps(status,indent=2,ensure_ascii=False))
+          if not status['qualified']:raise SystemExit(0)
+          from kaggle_environments import make
+          ns={};src=(root/'main.py').read_text();exec(compile(src,'main.py','exec'),ns);agent=ns['agent'];tm={'max':0.0}
+          def a(obs,configuration=None):
+              t=time.perf_counter()
+              try:return agent(obs,configuration)
+              finally:tm['max']=max(tm['max'],time.perf_counter()-t)
+          env=make('kaggriculture',configuration={'seed':20260821},debug=True);env.run([a,a]);last=env.steps[-1];v={'statuses':[x.status for x in last],'rewards':[x.reward for x in last],'max_call_ms':1000*tm['max']};(root/'selfplay.json').write_text(json.dumps(v,indent=2))
+          if v['statuses']!=['DONE','DONE'] or any(x is None for x in v['rewards']) or tm['max']>=1:raise SystemExit('validation failed')
+          sub=root/'submission';sub.mkdir();(sub/'main.py').write_text(src);archive=pathlib.Path('artifacts/kaggriculture_v9_'+status['probe']+'_90pct.tar.gz')
+          with tarfile.open(archive,'w:gz',compresslevel=9) as tf:tf.add(sub/'main.py',arcname='main.py')
+          with tarfile.open(archive,'r:gz') as tf:
+              if tf.getnames()!=['main.py']:raise SystemExit('bad archive')
+          if archive.stat().st_size>104857600:raise SystemExit('too large')
+          status.update({'selfplay':v,'archive':archive.name,'archive_bytes':archive.stat().st_size,'main_bytes':(root/'main.py').stat().st_size,'sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'engine':'1.32.7','caveat':'Counterfactual closed-loop candidate versus recorded open-loop opponent actions; not a guaranteed live-ladder probability.'});(root/'verification.json').write_text(json.dumps(status,indent=2,ensure_ascii=False));(root/'verification.txt').write_text(f"Kaggriculture V9 {status['probe']}\nQualified: true\nNewest: {q['wins']}/{q['valid']} = {100*q['win_rate']:.2f}%\nModel: {status['winner']['config']}\nSHA-256: {status['sha256']}\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kaggriculture-v9-probe-${{ matrix.probe }}
+          path: |
+            work/artifacts/kaggriculture_v9_*_90pct.tar.gz
+            work/artifacts/v9
+            work/artifacts/hybrid
+            work/artifacts/wrappers
+            work/artifacts/anchor.py
+          if-no-files-found: warn
+          retention-days: 30
