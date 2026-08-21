@@ -1,0 +1,1976 @@
+[
+  {
+    "episode": 94310456,
+    "teams": [
+      "カワシギ",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "カワシギ",
+    "step": 1,
+    "money": 19.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94310456,
+    "teams": [
+      "カワシギ",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "カワシギ",
+    "step": 2,
+    "money": 103.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94310456,
+    "teams": [
+      "カワシギ",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "カワシギ",
+    "step": 4,
+    "money": 103.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 3
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94310456,
+    "teams": [
+      "カワシギ",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "カワシギ",
+    "step": 24,
+    "money": 22.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 7,
+      "MELON": 12,
+      "SHEEP": 2,
+      "COW": 2
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94310456,
+    "teams": [
+      "カワシギ",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "カワシギ",
+    "step": 72,
+    "money": 47.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 7,
+      "MELON": 12,
+      "SHEEP": 2,
+      "PASTURE": 1,
+      "COW": 2
+    },
+    "shops": [
+      "ICE_CREAM_SHOP"
+    ],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 97,
+      "MELON": 262,
+      "MILK": 175,
+      "STRAWBERRY": 135,
+      "TOMATO": 60,
+      "WHEAT": 30,
+      "WOOL": 212
+    }
+  },
+  {
+    "episode": 94355263,
+    "teams": [
+      "tetsuya",
+      "カワシギ"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "カワシギ",
+    "step": 1,
+    "money": 19.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94355263,
+    "teams": [
+      "tetsuya",
+      "カワシギ"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "カワシギ",
+    "step": 2,
+    "money": 103.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94355263,
+    "teams": [
+      "tetsuya",
+      "カワシギ"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "カワシギ",
+    "step": 4,
+    "money": 103.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 3
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94355263,
+    "teams": [
+      "tetsuya",
+      "カワシギ"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "カワシギ",
+    "step": 24,
+    "money": 22.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 7,
+      "MELON": 12,
+      "SHEEP": 2,
+      "COW": 2
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94355263,
+    "teams": [
+      "tetsuya",
+      "カワシギ"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "カワシギ",
+    "step": 72,
+    "money": 47.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 7,
+      "MELON": 12,
+      "SHEEP": 2,
+      "PASTURE": 1,
+      "COW": 2
+    },
+    "shops": [
+      "BRUNCH_SPOT"
+    ],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 97,
+      "MELON": 262,
+      "MILK": 175,
+      "STRAWBERRY": 135,
+      "TOMATO": 60,
+      "WHEAT": 30,
+      "WOOL": 212
+    }
+  },
+  {
+    "episode": 94437841,
+    "teams": [
+      "Ryo Hasegawa",
+      "DeeperNet"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "DeeperNet",
+    "step": 1,
+    "money": 22.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94437841,
+    "teams": [
+      "Ryo Hasegawa",
+      "DeeperNet"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "DeeperNet",
+    "step": 2,
+    "money": 105.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94437841,
+    "teams": [
+      "Ryo Hasegawa",
+      "DeeperNet"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "DeeperNet",
+    "step": 4,
+    "money": 105.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 3
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94437841,
+    "teams": [
+      "Ryo Hasegawa",
+      "DeeperNet"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "DeeperNet",
+    "step": 24,
+    "money": 23.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 7,
+      "MELON": 12,
+      "SHEEP": 2,
+      "COW": 2
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94437841,
+    "teams": [
+      "Ryo Hasegawa",
+      "DeeperNet"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "DeeperNet",
+    "step": 72,
+    "money": 51.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 7,
+      "MELON": 12,
+      "SHEEP": 2,
+      "PASTURE": 1,
+      "COW": 2
+    },
+    "shops": [
+      "ICE_CREAM_SHOP"
+    ],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 98,
+      "MELON": 262,
+      "MILK": 175,
+      "STRAWBERRY": 135,
+      "TOMATO": 60,
+      "WHEAT": 30,
+      "WOOL": 212
+    }
+  },
+  {
+    "episode": 94439800,
+    "teams": [
+      "カワシギ",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "カワシギ",
+    "step": 1,
+    "money": 19.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94439800,
+    "teams": [
+      "カワシギ",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "カワシギ",
+    "step": 2,
+    "money": 103.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94439800,
+    "teams": [
+      "カワシギ",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "カワシギ",
+    "step": 4,
+    "money": 103.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 3
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94439800,
+    "teams": [
+      "カワシギ",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "カワシギ",
+    "step": 24,
+    "money": 22.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 7,
+      "MELON": 12,
+      "SHEEP": 2,
+      "COW": 2
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94439800,
+    "teams": [
+      "カワシギ",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "カワシギ",
+    "step": 72,
+    "money": 47.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 7,
+      "MELON": 12,
+      "SHEEP": 2,
+      "PASTURE": 1,
+      "COW": 2
+    },
+    "shops": [
+      "SMOOTHIE_SHOP"
+    ],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 97,
+      "MELON": 262,
+      "MILK": 175,
+      "STRAWBERRY": 135,
+      "TOMATO": 60,
+      "WHEAT": 30,
+      "WOOL": 212
+    }
+  },
+  {
+    "episode": 94450041,
+    "teams": [
+      "Aji Samudra",
+      "Matsu"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Aji Samudra",
+    "step": 1,
+    "money": 877.0,
+    "hands": 7,
+    "lands": 2,
+    "counts": {},
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94450041,
+    "teams": [
+      "Aji Samudra",
+      "Matsu"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Aji Samudra",
+    "step": 2,
+    "money": 856.0,
+    "hands": 8,
+    "lands": 2,
+    "counts": {
+      "MELON": 2
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 26,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94450041,
+    "teams": [
+      "Aji Samudra",
+      "Matsu"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Aji Samudra",
+    "step": 4,
+    "money": 856.0,
+    "hands": 8,
+    "lands": 2,
+    "counts": {
+      "MELON": 2
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 26,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94450041,
+    "teams": [
+      "Aji Samudra",
+      "Matsu"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Aji Samudra",
+    "step": 24,
+    "money": 856.0,
+    "hands": 0,
+    "lands": 2,
+    "counts": {
+      "WHEAT": 29,
+      "MELON": 10
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 26,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94450041,
+    "teams": [
+      "Aji Samudra",
+      "Matsu"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Aji Samudra",
+    "step": 72,
+    "money": 722.0,
+    "hands": 0,
+    "lands": 2,
+    "counts": {
+      "WHEAT": 37,
+      "MELON": 10
+    },
+    "shops": [
+      "PIZZA_SHOP"
+    ],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 99,
+      "MELON": 262,
+      "MILK": 175,
+      "STRAWBERRY": 135,
+      "TOMATO": 60,
+      "WHEAT": 29,
+      "WOOL": 212
+    }
+  },
+  {
+    "episode": 94450953,
+    "teams": [
+      "Nafis Fuad Shahid",
+      "Matsu"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Nafis Fuad Shahid",
+    "step": 1,
+    "money": 1158.0,
+    "hands": 2,
+    "lands": 1,
+    "counts": {},
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94450953,
+    "teams": [
+      "Nafis Fuad Shahid",
+      "Matsu"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Nafis Fuad Shahid",
+    "step": 2,
+    "money": 1158.0,
+    "hands": 2,
+    "lands": 1,
+    "counts": {
+      "MELON": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 26,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94450953,
+    "teams": [
+      "Nafis Fuad Shahid",
+      "Matsu"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Nafis Fuad Shahid",
+    "step": 4,
+    "money": 1158.0,
+    "hands": 2,
+    "lands": 1,
+    "counts": {
+      "MELON": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 26,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94450953,
+    "teams": [
+      "Nafis Fuad Shahid",
+      "Matsu"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Nafis Fuad Shahid",
+    "step": 24,
+    "money": 1158.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "MELON": 20,
+      "WEED": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 26,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94450953,
+    "teams": [
+      "Nafis Fuad Shahid",
+      "Matsu"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Nafis Fuad Shahid",
+    "step": 72,
+    "money": 1074.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "MELON": 23
+    },
+    "shops": [
+      "PIZZA_SHOP"
+    ],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 262,
+      "MILK": 175,
+      "STRAWBERRY": 135,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 212
+    }
+  },
+  {
+    "episode": 94458225,
+    "teams": [
+      "カワシギ",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "カワシギ",
+    "step": 1,
+    "money": 19.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94458225,
+    "teams": [
+      "カワシギ",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "カワシギ",
+    "step": 2,
+    "money": 103.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94458225,
+    "teams": [
+      "カワシギ",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "カワシギ",
+    "step": 4,
+    "money": 103.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 3
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94458225,
+    "teams": [
+      "カワシギ",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "カワシギ",
+    "step": 24,
+    "money": 22.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 7,
+      "MELON": 12,
+      "SHEEP": 2,
+      "COW": 2
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94458225,
+    "teams": [
+      "カワシギ",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "カワシギ",
+    "step": 72,
+    "money": 47.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 7,
+      "MELON": 12,
+      "SHEEP": 2,
+      "PASTURE": 1,
+      "COW": 2
+    },
+    "shops": [
+      "FARMERS_MARKET"
+    ],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 97,
+      "MELON": 262,
+      "MILK": 175,
+      "STRAWBERRY": 135,
+      "TOMATO": 60,
+      "WHEAT": 30,
+      "WOOL": 212
+    }
+  },
+  {
+    "episode": 94478362,
+    "teams": [
+      "TIM",
+      "Arman Tuganbaev"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Arman Tuganbaev",
+    "step": 1,
+    "money": 282.0,
+    "hands": 2,
+    "lands": 1,
+    "counts": {},
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94478362,
+    "teams": [
+      "TIM",
+      "Arman Tuganbaev"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Arman Tuganbaev",
+    "step": 2,
+    "money": 282.0,
+    "hands": 2,
+    "lands": 1,
+    "counts": {},
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94478362,
+    "teams": [
+      "TIM",
+      "Arman Tuganbaev"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Arman Tuganbaev",
+    "step": 4,
+    "money": 170.0,
+    "hands": 2,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94478362,
+    "teams": [
+      "TIM",
+      "Arman Tuganbaev"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Arman Tuganbaev",
+    "step": 24,
+    "money": 170.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 5,
+      "MELON": 7,
+      "SHEEP": 4
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 29,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94478362,
+    "teams": [
+      "TIM",
+      "Arman Tuganbaev"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Arman Tuganbaev",
+    "step": 72,
+    "money": 313.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 10,
+      "MELON": 7,
+      "STRAWBERRY": 2,
+      "SHEEP": 4
+    },
+    "shops": [
+      "ICE_CREAM_SHOP"
+    ],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 98,
+      "MELON": 262,
+      "MILK": 175,
+      "STRAWBERRY": 135,
+      "TOMATO": 60,
+      "WHEAT": 31,
+      "WOOL": 212
+    }
+  },
+  {
+    "episode": 94568538,
+    "teams": [
+      "Ryo Hasegawa",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Ryo Hasegawa",
+    "step": 1,
+    "money": 137.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94568538,
+    "teams": [
+      "Ryo Hasegawa",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Ryo Hasegawa",
+    "step": 2,
+    "money": 247.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 26,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94568538,
+    "teams": [
+      "Ryo Hasegawa",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Ryo Hasegawa",
+    "step": 4,
+    "money": 221.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 2,
+      "COW": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 26,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94568538,
+    "teams": [
+      "Ryo Hasegawa",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Ryo Hasegawa",
+    "step": 24,
+    "money": 140.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "MELON": 11,
+      "WHEAT": 6,
+      "SHEEP": 2,
+      "COW": 2
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94568538,
+    "teams": [
+      "Ryo Hasegawa",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Ryo Hasegawa",
+    "step": 72,
+    "money": 353.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "MELON": 11,
+      "WHEAT": 10,
+      "SHEEP": 2,
+      "COW": 2
+    },
+    "shops": [
+      "PIZZA_SHOP"
+    ],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 97,
+      "MELON": 262,
+      "MILK": 175,
+      "STRAWBERRY": 135,
+      "TOMATO": 60,
+      "WHEAT": 30,
+      "WOOL": 212
+    }
+  },
+  {
+    "episode": 94617605,
+    "teams": [
+      "StackKnight",
+      "Subramanya N"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Subramanya N",
+    "step": 1,
+    "money": 1850.0,
+    "hands": 6,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94617605,
+    "teams": [
+      "StackKnight",
+      "Subramanya N"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Subramanya N",
+    "step": 2,
+    "money": 1090.0,
+    "hands": 6,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94617605,
+    "teams": [
+      "StackKnight",
+      "Subramanya N"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Subramanya N",
+    "step": 4,
+    "money": 581.0,
+    "hands": 6,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1,
+      "SHEEP": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94617605,
+    "teams": [
+      "StackKnight",
+      "Subramanya N"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Subramanya N",
+    "step": 24,
+    "money": 68.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "MELON": 8,
+      "CARROT": 7,
+      "WHEAT": 3,
+      "COW": 2,
+      "COOP": 1,
+      "SHEEP": 2
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 29,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94617605,
+    "teams": [
+      "StackKnight",
+      "Subramanya N"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Subramanya N",
+    "step": 72,
+    "money": 405.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "MELON": 8,
+      "CARROT": 7,
+      "WHEAT": 3,
+      "STRAWBERRY": 1,
+      "COW": 2,
+      "COOP": 1,
+      "SHEEP": 2
+    },
+    "shops": [
+      "FARMERS_MARKET"
+    ],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 98,
+      "MELON": 262,
+      "MILK": 175,
+      "STRAWBERRY": 135,
+      "TOMATO": 60,
+      "WHEAT": 31,
+      "WOOL": 212
+    }
+  },
+  {
+    "episode": 94636231,
+    "teams": [
+      "tetsuya",
+      "Arman Tuganbaev"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Arman Tuganbaev",
+    "step": 1,
+    "money": 280.0,
+    "hands": 2,
+    "lands": 1,
+    "counts": {},
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94636231,
+    "teams": [
+      "tetsuya",
+      "Arman Tuganbaev"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Arman Tuganbaev",
+    "step": 2,
+    "money": 280.0,
+    "hands": 2,
+    "lands": 1,
+    "counts": {},
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94636231,
+    "teams": [
+      "tetsuya",
+      "Arman Tuganbaev"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Arman Tuganbaev",
+    "step": 4,
+    "money": 169.0,
+    "hands": 2,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94636231,
+    "teams": [
+      "tetsuya",
+      "Arman Tuganbaev"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Arman Tuganbaev",
+    "step": 24,
+    "money": 169.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 5,
+      "MELON": 7,
+      "SHEEP": 4
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94636231,
+    "teams": [
+      "tetsuya",
+      "Arman Tuganbaev"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Arman Tuganbaev",
+    "step": 72,
+    "money": 307.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 10,
+      "MELON": 7,
+      "STRAWBERRY": 2,
+      "SHEEP": 4
+    },
+    "shops": [
+      "SMOOTHIE_SHOP"
+    ],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 96,
+      "MELON": 262,
+      "MILK": 175,
+      "STRAWBERRY": 135,
+      "TOMATO": 60,
+      "WHEAT": 31,
+      "WOOL": 212
+    }
+  },
+  {
+    "episode": 94711805,
+    "teams": [
+      "カワシギ",
+      "Arman Tuganbaev"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Arman Tuganbaev",
+    "step": 1,
+    "money": 282.0,
+    "hands": 2,
+    "lands": 1,
+    "counts": {},
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94711805,
+    "teams": [
+      "カワシギ",
+      "Arman Tuganbaev"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Arman Tuganbaev",
+    "step": 2,
+    "money": 282.0,
+    "hands": 2,
+    "lands": 1,
+    "counts": {},
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94711805,
+    "teams": [
+      "カワシギ",
+      "Arman Tuganbaev"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Arman Tuganbaev",
+    "step": 4,
+    "money": 170.0,
+    "hands": 2,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94711805,
+    "teams": [
+      "カワシギ",
+      "Arman Tuganbaev"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Arman Tuganbaev",
+    "step": 24,
+    "money": 170.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 5,
+      "MELON": 7,
+      "SHEEP": 4
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 29,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94711805,
+    "teams": [
+      "カワシギ",
+      "Arman Tuganbaev"
+    ],
+    "replaced_seat": 0,
+    "opponent_seat": 1,
+    "opponent": "Arman Tuganbaev",
+    "step": 72,
+    "money": 313.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "WHEAT": 10,
+      "MELON": 7,
+      "STRAWBERRY": 2,
+      "SHEEP": 4
+    },
+    "shops": [
+      "SMOOTHIE_SHOP"
+    ],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 98,
+      "MELON": 262,
+      "MILK": 175,
+      "STRAWBERRY": 135,
+      "TOMATO": 60,
+      "WHEAT": 31,
+      "WOOL": 212
+    }
+  },
+  {
+    "episode": 94726918,
+    "teams": [
+      "Ryo Hasegawa",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Ryo Hasegawa",
+    "step": 1,
+    "money": 137.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 28,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94726918,
+    "teams": [
+      "Ryo Hasegawa",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Ryo Hasegawa",
+    "step": 2,
+    "money": 247.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 26,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94726918,
+    "teams": [
+      "Ryo Hasegawa",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Ryo Hasegawa",
+    "step": 4,
+    "money": 221.0,
+    "hands": 5,
+    "lands": 1,
+    "counts": {
+      "PASTURE": 2,
+      "COW": 1
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 26,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94726918,
+    "teams": [
+      "Ryo Hasegawa",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Ryo Hasegawa",
+    "step": 24,
+    "money": 140.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "MELON": 11,
+      "WHEAT": 6,
+      "SHEEP": 2,
+      "COW": 2
+    },
+    "shops": [],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 100,
+      "MELON": 256,
+      "MILK": 169,
+      "STRAWBERRY": 128,
+      "TOMATO": 60,
+      "WHEAT": 27,
+      "WOOL": 206
+    }
+  },
+  {
+    "episode": 94726918,
+    "teams": [
+      "Ryo Hasegawa",
+      "tetsuya"
+    ],
+    "replaced_seat": 1,
+    "opponent_seat": 0,
+    "opponent": "Ryo Hasegawa",
+    "step": 72,
+    "money": 353.0,
+    "hands": 0,
+    "lands": 1,
+    "counts": {
+      "MELON": 11,
+      "WHEAT": 10,
+      "SHEEP": 2,
+      "COW": 2
+    },
+    "shops": [
+      "YARN_STORE"
+    ],
+    "market_prices": {
+      "CARROT": 35,
+      "EGG": 50,
+      "FERTILIZER": 97,
+      "MELON": 262,
+      "MILK": 175,
+      "STRAWBERRY": 135,
+      "TOMATO": 60,
+      "WHEAT": 30,
+      "WOOL": 212
+    }
+  }
+]
