@@ -1,0 +1,110 @@
+name: Kaggriculture V9 Independent Qualification
+
+on:
+  push:
+    branches: [kaggriculture-v9-worker]
+    paths: ['.github/workflows/kaggriculture-v9-independent.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: kaggriculture-v9-worker
+          fetch-depth: 0
+      - name: Fetch research tree
+        run: git clone --depth 1 --branch kaggriculture-v9-90pct https://github.com/hayato-matsuzawa/Kaggriculture.git work
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned engine
+        run: python -m pip install 'kaggle-environments==1.32.7' requests scikit-learn
+      - name: Evaluate decision one with isolated caches
+        working-directory: work
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/hybrid
+          pids=()
+          for suffix in unseen_current cok sota_claude; do
+            python research/v9_hybrid_eval.py \
+              --anchor research/v9_screen/candidates/unseen_current/main.py \
+              --suffix research/v9_screen/candidates/${suffix}/main.py \
+              --suffix-name ${suffix} \
+              --decision 1 \
+              --groups public_v18_live mid_teacher_holdout \
+              --cache artifacts/replays-${suffix} \
+              --output artifacts/hybrid/hybrid-d1-${suffix}.json \
+              > artifacts/hybrid/${suffix}.log 2>&1 &
+            pids+=("$!")
+          done
+          rc=0
+          for p in "${pids[@]}"; do wait "$p" || rc=1; done
+          cat artifacts/hybrid/*.log
+          exit "$rc"
+      - name: Train selector without newest data
+        working-directory: work
+        run: |
+          mkdir -p artifacts/v9
+          python research/v9_selector_train.py --hybrid-reports artifacts/hybrid --candidate-dir research/v9_screen/candidates --output-dir artifacts/v9
+          printf '\n_load()\n' >> artifacts/v9/main.py
+          python -m py_compile artifacts/v9/main.py
+      - name: Untouched newest qualification
+        id: newest
+        continue-on-error: true
+        working-directory: work
+        run: python research/benchmark_v21_newest.py --candidate artifacts/v9/main.py --cache artifacts/replays-newest --output artifacts/v9/newest.json --markdown artifacts/v9/newest.md
+      - name: Enforce gates, validate and package
+        if: always()
+        working-directory: work
+        run: |
+          python - <<'PY'
+          import hashlib,json,pathlib,tarfile,time
+          root=pathlib.Path('artifacts/v9');status={'qualified':False}
+          if (root/'selector-report.json').exists() and (root/'newest.json').exists():
+              s=json.loads((root/'selector-report.json').read_text());n=json.loads((root/'newest.json').read_text());q=n['summary']['newest_holdout']['replaced_team_opponent'];folds=s['winner']['folds'];domain=[x for x in folds if x['domain']];secondary=[x for x in folds if not x['domain']]
+              checks={'valid_26':q['valid']==26,'wins_24':q['wins']>=24,'runtime':float(q.get('max_call_ms',0))<1000,'domain_transfer':min(x['win_rate'] for x in domain)>=0.70,'secondary_cv':sum(x['wins'] for x in secondary)/max(1,sum(x['n'] for x in secondary))>=0.78}
+              status.update({'qualified':all(checks.values()),'checks':checks,'newest':q,'winner':s['winner'],'reason':'; '.join(k for k,v in checks.items() if not v)})
+          else:status['reason']='missing reports'
+          (root/'qualification-status.json').write_text(json.dumps(status,indent=2,ensure_ascii=False));print(json.dumps(status,indent=2,ensure_ascii=False))
+          if not status['qualified']:raise SystemExit(0)
+          from kaggle_environments import make
+          ns={};src=(root/'main.py').read_text();exec(compile(src,'main.py','exec'),ns);agent=ns['agent'];tm={'max':0.0}
+          def wrapped(obs,configuration=None):
+              t=time.perf_counter()
+              try:return agent(obs,configuration)
+              finally:tm['max']=max(tm['max'],time.perf_counter()-t)
+          env=make('kaggriculture',configuration={'seed':20260821},debug=True);env.run([wrapped,wrapped]);last=env.steps[-1];v={'statuses':[x.status for x in last],'rewards':[x.reward for x in last],'max_call_ms':1000*tm['max']};(root/'selfplay.json').write_text(json.dumps(v,indent=2))
+          if v['statuses']!=['DONE','DONE'] or any(x is None for x in v['rewards']) or tm['max']>=1:raise SystemExit('selfplay failed')
+          sub=root/'submission';sub.mkdir();(sub/'main.py').write_text(src);archive=pathlib.Path('artifacts/kaggriculture_v9_90pct_qualified.tar.gz')
+          with tarfile.open(archive,'w:gz',compresslevel=9) as tf:tf.add(sub/'main.py',arcname='main.py')
+          with tarfile.open(archive,'r:gz') as tf:
+              if tf.getnames()!=['main.py']:raise SystemExit('archive structure')
+          if archive.stat().st_size>104857600:raise SystemExit('too large')
+          status.update({'selfplay':v,'archive_bytes':archive.stat().st_size,'main_bytes':(root/'main.py').stat().st_size,'sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'engine':'1.32.7','caveat':'Counterfactual closed-loop candidate versus recorded open-loop opponent actions; not a guaranteed live-ladder probability.'});(root/'verification.json').write_text(json.dumps(status,indent=2,ensure_ascii=False));(root/'verification.txt').write_text(f"Kaggriculture V9\nQualified: true\nNewest: {q['wins']}/{q['valid']} = {100*q['win_rate']:.2f}%\nModel: {status['winner']['config']}\nSHA-256: {status['sha256']}\n")
+          PY
+      - name: Publish result record
+        if: always()
+        run: |
+          git fetch origin kaggriculture-v9-worker; git reset --hard origin/kaggriculture-v9-worker
+          rm -rf kaggriculture-v9-result; mkdir -p kaggriculture-v9-result
+          cp -a work/artifacts/v9/. kaggriculture-v9-result/ || true
+          git config user.name github-actions[bot]; git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture-v9-result
+          if ! git diff --cached --quiet; then git commit -m 'Record independent Kaggriculture V9 qualification'; git push origin HEAD:kaggriculture-v9-worker; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kaggriculture-v9-independent-result
+          path: |
+            work/artifacts/kaggriculture_v9_90pct_qualified.tar.gz
+            work/artifacts/v9
+            work/artifacts/hybrid
+          if-no-files-found: warn
+          retention-days: 30
