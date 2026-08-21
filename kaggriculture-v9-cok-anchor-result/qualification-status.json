@@ -1,0 +1,141 @@
+{
+  "qualified": false,
+  "anchor": "cok",
+  "decision": 1,
+  "checks": {
+    "valid_26": true,
+    "wins_24": false,
+    "runtime": true,
+    "domain_transfer": true,
+    "secondary_cv": true
+  },
+  "newest": {
+    "comparisons": 26,
+    "valid": 26,
+    "wins": 16,
+    "win_rate": 0.6153846153846154,
+    "mean_margin": 24734.80769230769,
+    "median_margin": 6605.0,
+    "min_margin": -43064.0,
+    "max_margin": 164406.0,
+    "max_call_ms": 190.59827599994605
+  },
+  "winner": {
+    "config": "d1:constant(candidate=1)",
+    "decision": 1,
+    "kind": "constant",
+    "params": {
+      "candidate": 1
+    },
+    "folds": [
+      {
+        "name": "public_to_mid",
+        "domain": true,
+        "n": 40,
+        "wins": 35,
+        "win_rate": 0.875,
+        "mean_margin": 12524.425,
+        "min_margin": -26840.0
+      },
+      {
+        "name": "mid_to_public",
+        "domain": true,
+        "n": 54,
+        "wins": 48,
+        "win_rate": 0.8888888888888888,
+        "mean_margin": 28032.38888888889,
+        "min_margin": -8255.0
+      },
+      {
+        "name": "episode_cv_0",
+        "domain": false,
+        "n": 20,
+        "wins": 20,
+        "win_rate": 1.0,
+        "mean_margin": 33738.85,
+        "min_margin": 4915.0
+      },
+      {
+        "name": "episode_cv_1",
+        "domain": false,
+        "n": 20,
+        "wins": 10,
+        "win_rate": 0.5,
+        "mean_margin": 12402.25,
+        "min_margin": -26840.0
+      },
+      {
+        "name": "episode_cv_2",
+        "domain": false,
+        "n": 18,
+        "wins": 17,
+        "win_rate": 0.9444444444444444,
+        "mean_margin": 14139.333333333334,
+        "min_margin": -2612.0
+      },
+      {
+        "name": "episode_cv_3",
+        "domain": false,
+        "n": 18,
+        "wins": 18,
+        "win_rate": 1.0,
+        "mean_margin": 26829.666666666668,
+        "min_margin": 1154.0
+      },
+      {
+        "name": "episode_cv_4",
+        "domain": false,
+        "n": 18,
+        "wins": 18,
+        "win_rate": 1.0,
+        "mean_margin": 19692.333333333332,
+        "min_margin": 4038.0
+      },
+      {
+        "name": "public_v18_live_early_to_late",
+        "domain": false,
+        "n": 16,
+        "wins": 14,
+        "win_rate": 0.875,
+        "mean_margin": 13024.75,
+        "min_margin": -6705.0
+      },
+      {
+        "name": "public_v18_live_late_to_early",
+        "domain": false,
+        "n": 38,
+        "wins": 34,
+        "win_rate": 0.8947368421052632,
+        "mean_margin": 34351.39473684211,
+        "min_margin": -8255.0
+      },
+      {
+        "name": "mid_teacher_holdout_early_to_late",
+        "domain": false,
+        "n": 12,
+        "wins": 10,
+        "win_rate": 0.8333333333333334,
+        "mean_margin": 11442.916666666666,
+        "min_margin": -26840.0
+      },
+      {
+        "name": "mid_teacher_holdout_late_to_early",
+        "domain": false,
+        "n": 28,
+        "wins": 25,
+        "win_rate": 0.8928571428571429,
+        "mean_margin": 12987.92857142857,
+        "min_margin": -5271.0
+      }
+    ],
+    "score": [
+      0.875,
+      0.8829787234042553,
+      0.8822635291933537,
+      0.5,
+      21433.255319148935,
+      0
+    ]
+  },
+  "reason": "wins_24"
+}

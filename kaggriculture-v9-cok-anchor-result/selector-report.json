@@ -1,0 +1,3562 @@
+{
+  "selection_protocol": "No newest-holdout row was loaded. Hyperparameters selected by bidirectional era transfer, grouped episode CV, and temporal block CV.",
+  "candidate_names": [
+    "unseen_current",
+    "cok",
+    "sota_claude"
+  ],
+  "decisions_considered": [
+    1
+  ],
+  "winner": {
+    "config": "d1:constant(candidate=1)",
+    "decision": 1,
+    "kind": "constant",
+    "params": {
+      "candidate": 1
+    },
+    "folds": [
+      {
+        "name": "public_to_mid",
+        "domain": true,
+        "n": 40,
+        "wins": 35,
+        "win_rate": 0.875,
+        "mean_margin": 12524.425,
+        "min_margin": -26840.0
+      },
+      {
+        "name": "mid_to_public",
+        "domain": true,
+        "n": 54,
+        "wins": 48,
+        "win_rate": 0.8888888888888888,
+        "mean_margin": 28032.38888888889,
+        "min_margin": -8255.0
+      },
+      {
+        "name": "episode_cv_0",
+        "domain": false,
+        "n": 20,
+        "wins": 20,
+        "win_rate": 1.0,
+        "mean_margin": 33738.85,
+        "min_margin": 4915.0
+      },
+      {
+        "name": "episode_cv_1",
+        "domain": false,
+        "n": 20,
+        "wins": 10,
+        "win_rate": 0.5,
+        "mean_margin": 12402.25,
+        "min_margin": -26840.0
+      },
+      {
+        "name": "episode_cv_2",
+        "domain": false,
+        "n": 18,
+        "wins": 17,
+        "win_rate": 0.9444444444444444,
+        "mean_margin": 14139.333333333334,
+        "min_margin": -2612.0
+      },
+      {
+        "name": "episode_cv_3",
+        "domain": false,
+        "n": 18,
+        "wins": 18,
+        "win_rate": 1.0,
+        "mean_margin": 26829.666666666668,
+        "min_margin": 1154.0
+      },
+      {
+        "name": "episode_cv_4",
+        "domain": false,
+        "n": 18,
+        "wins": 18,
+        "win_rate": 1.0,
+        "mean_margin": 19692.333333333332,
+        "min_margin": 4038.0
+      },
+      {
+        "name": "public_v18_live_early_to_late",
+        "domain": false,
+        "n": 16,
+        "wins": 14,
+        "win_rate": 0.875,
+        "mean_margin": 13024.75,
+        "min_margin": -6705.0
+      },
+      {
+        "name": "public_v18_live_late_to_early",
+        "domain": false,
+        "n": 38,
+        "wins": 34,
+        "win_rate": 0.8947368421052632,
+        "mean_margin": 34351.39473684211,
+        "min_margin": -8255.0
+      },
+      {
+        "name": "mid_teacher_holdout_early_to_late",
+        "domain": false,
+        "n": 12,
+        "wins": 10,
+        "win_rate": 0.8333333333333334,
+        "mean_margin": 11442.916666666666,
+        "min_margin": -26840.0
+      },
+      {
+        "name": "mid_teacher_holdout_late_to_early",
+        "domain": false,
+        "n": 28,
+        "wins": 25,
+        "win_rate": 0.8928571428571429,
+        "mean_margin": 12987.92857142857,
+        "min_margin": -5271.0
+      }
+    ],
+    "score": [
+      0.875,
+      0.8829787234042553,
+      0.8822635291933537,
+      0.5,
+      21433.255319148935,
+      0
+    ]
+  },
+  "top_configs": [
+    {
+      "config": "d1:constant(candidate=1)",
+      "decision": 1,
+      "kind": "constant",
+      "params": {
+        "candidate": 1
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        0
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=1,min_samples_leaf=2)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 1,
+        "min_samples_leaf": 2
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=1,min_samples_leaf=4)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 1,
+        "min_samples_leaf": 4
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=1,min_samples_leaf=6)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 1,
+        "min_samples_leaf": 6
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=1,min_samples_leaf=10)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 1,
+        "min_samples_leaf": 10
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=1,min_samples_leaf=14)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 1,
+        "min_samples_leaf": 14
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=2,min_samples_leaf=2)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 2,
+        "min_samples_leaf": 2
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=2,min_samples_leaf=4)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 2,
+        "min_samples_leaf": 4
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=2,min_samples_leaf=6)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 2,
+        "min_samples_leaf": 6
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=2,min_samples_leaf=10)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 2,
+        "min_samples_leaf": 10
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=2,min_samples_leaf=14)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 2,
+        "min_samples_leaf": 14
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=3,min_samples_leaf=2)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 3,
+        "min_samples_leaf": 2
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=3,min_samples_leaf=4)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 3,
+        "min_samples_leaf": 4
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=3,min_samples_leaf=6)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 3,
+        "min_samples_leaf": 6
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=3,min_samples_leaf=10)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 3,
+        "min_samples_leaf": 10
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=3,min_samples_leaf=14)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 3,
+        "min_samples_leaf": 14
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=4,min_samples_leaf=2)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 4,
+        "min_samples_leaf": 2
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=4,min_samples_leaf=4)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 4,
+        "min_samples_leaf": 4
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=4,min_samples_leaf=6)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 4,
+        "min_samples_leaf": 6
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=4,min_samples_leaf=10)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 4,
+        "min_samples_leaf": 10
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=4,min_samples_leaf=14)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 4,
+        "min_samples_leaf": 14
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=5,min_samples_leaf=2)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 5,
+        "min_samples_leaf": 2
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=5,min_samples_leaf=4)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 5,
+        "min_samples_leaf": 4
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=5,min_samples_leaf=6)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 5,
+        "min_samples_leaf": 6
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=5,min_samples_leaf=10)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 5,
+        "min_samples_leaf": 10
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:dtc(max_depth=5,min_samples_leaf=14)",
+      "decision": 1,
+      "kind": "dtc",
+      "params": {
+        "max_depth": 5,
+        "min_samples_leaf": 14
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 35,
+          "win_rate": 0.875,
+          "mean_margin": 12524.425,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 48,
+          "win_rate": 0.8888888888888888,
+          "mean_margin": 28032.38888888889,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 20,
+          "win_rate": 1.0,
+          "mean_margin": 33738.85,
+          "min_margin": 4915.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 10,
+          "win_rate": 0.5,
+          "mean_margin": 12402.25,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 17,
+          "win_rate": 0.9444444444444444,
+          "mean_margin": 14139.333333333334,
+          "min_margin": -2612.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 26829.666666666668,
+          "min_margin": 1154.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 18,
+          "win_rate": 1.0,
+          "mean_margin": 19692.333333333332,
+          "min_margin": 4038.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 14,
+          "win_rate": 0.875,
+          "mean_margin": 13024.75,
+          "min_margin": -6705.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 34,
+          "win_rate": 0.8947368421052632,
+          "mean_margin": 34351.39473684211,
+          "min_margin": -8255.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 10,
+          "win_rate": 0.8333333333333334,
+          "mean_margin": 11442.916666666666,
+          "min_margin": -26840.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 25,
+          "win_rate": 0.8928571428571429,
+          "mean_margin": 12987.92857142857,
+          "min_margin": -5271.0
+        }
+      ],
+      "score": [
+        0.875,
+        0.8829787234042553,
+        0.8822635291933537,
+        0.5,
+        21433.255319148935,
+        -1
+      ]
+    },
+    {
+      "config": "d1:constant(candidate=2)",
+      "decision": 1,
+      "kind": "constant",
+      "params": {
+        "candidate": 2
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 2,
+          "win_rate": 0.05,
+          "mean_margin": -86392.25,
+          "min_margin": -122462.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 6,
+          "win_rate": 0.1111111111111111,
+          "mean_margin": -64422.46296296296,
+          "min_margin": -114428.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 4,
+          "win_rate": 0.2,
+          "mean_margin": -63476.2,
+          "min_margin": -114428.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 2,
+          "win_rate": 0.1,
+          "mean_margin": -74654.4,
+          "min_margin": -122462.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 0,
+          "win_rate": 0.0,
+          "mean_margin": -87424.61111111111,
+          "min_margin": -121810.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 0,
+          "win_rate": 0.0,
+          "mean_margin": -82946.5,
+          "min_margin": -116975.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 2,
+          "win_rate": 0.1111111111111111,
+          "mean_margin": -61400.61111111111,
+          "min_margin": -104845.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 0,
+          "win_rate": 0.0,
+          "mean_margin": -83707.6875,
+          "min_margin": -114428.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 6,
+          "win_rate": 0.15789473684210525,
+          "mean_margin": -56302.36842105263,
+          "min_margin": -104845.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 0,
+          "win_rate": 0.0,
+          "mean_margin": -91305.83333333333,
+          "min_margin": -121810.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 2,
+          "win_rate": 0.07142857142857142,
+          "mean_margin": -84286.42857142857,
+          "min_margin": -122462.0
+        }
+      ],
+      "score": [
+        0.05,
+        0.0851063829787234,
+        0.07115937993130976,
+        0.0,
+        -73771.3085106383,
+        0
+      ]
+    },
+    {
+      "config": "d1:constant(candidate=0)",
+      "decision": 1,
+      "kind": "constant",
+      "params": {
+        "candidate": 0
+      },
+      "folds": [
+        {
+          "name": "public_to_mid",
+          "domain": true,
+          "n": 40,
+          "wins": 0,
+          "win_rate": 0.0,
+          "mean_margin": -137394.5,
+          "min_margin": -187326.0
+        },
+        {
+          "name": "mid_to_public",
+          "domain": true,
+          "n": 54,
+          "wins": 2,
+          "win_rate": 0.037037037037037035,
+          "mean_margin": -126112.92592592593,
+          "min_margin": -180135.0
+        },
+        {
+          "name": "episode_cv_0",
+          "domain": false,
+          "n": 20,
+          "wins": 2,
+          "win_rate": 0.1,
+          "mean_margin": -108375.0,
+          "min_margin": -177383.0
+        },
+        {
+          "name": "episode_cv_1",
+          "domain": false,
+          "n": 20,
+          "wins": 0,
+          "win_rate": 0.0,
+          "mean_margin": -140581.05,
+          "min_margin": -187326.0
+        },
+        {
+          "name": "episode_cv_2",
+          "domain": false,
+          "n": 18,
+          "wins": 0,
+          "win_rate": 0.0,
+          "mean_margin": -134818.38888888888,
+          "min_margin": -172751.0
+        },
+        {
+          "name": "episode_cv_3",
+          "domain": false,
+          "n": 18,
+          "wins": 0,
+          "win_rate": 0.0,
+          "mean_margin": -150106.0,
+          "min_margin": -173247.0
+        },
+        {
+          "name": "episode_cv_4",
+          "domain": false,
+          "n": 18,
+          "wins": 0,
+          "win_rate": 0.0,
+          "mean_margin": -122117.66666666667,
+          "min_margin": -169897.0
+        },
+        {
+          "name": "public_v18_live_early_to_late",
+          "domain": false,
+          "n": 16,
+          "wins": 0,
+          "win_rate": 0.0,
+          "mean_margin": -149818.5,
+          "min_margin": -180135.0
+        },
+        {
+          "name": "public_v18_live_late_to_early",
+          "domain": false,
+          "n": 38,
+          "wins": 2,
+          "win_rate": 0.05263157894736842,
+          "mean_margin": -116131.63157894737,
+          "min_margin": -172046.0
+        },
+        {
+          "name": "mid_teacher_holdout_early_to_late",
+          "domain": false,
+          "n": 12,
+          "wins": 0,
+          "win_rate": 0.0,
+          "mean_margin": -141307.16666666666,
+          "min_margin": -172751.0
+        },
+        {
+          "name": "mid_teacher_holdout_late_to_early",
+          "domain": false,
+          "n": 28,
+          "wins": 0,
+          "win_rate": 0.0,
+          "mean_margin": -135717.64285714287,
+          "min_margin": -187326.0
+        }
+      ],
+      "score": [
+        0.0,
+        0.02127659574468085,
+        0.016959064327485382,
+        0.0,
+        -130913.59574468085,
+        0
+      ]
+    }
+  ],
+  "model": {
+    "kind": "constant",
+    "candidate": 1
+  },
+  "feature_names": [
+    "carried.CARROT",
+    "carried.COW",
+    "carried.EGG",
+    "carried.FERTILIZER",
+    "carried.GOOSE",
+    "carried.MELON",
+    "carried.MILK",
+    "carried.SHEEP",
+    "carried.STRAWBERRY",
+    "carried.TOMATO",
+    "carried.WHEAT",
+    "carried.WOOL",
+    "day",
+    "diff.hands",
+    "diff.lands",
+    "diff.money",
+    "hour",
+    "market_inventory.CARROT",
+    "market_inventory.EGG",
+    "market_inventory.FERTILIZER",
+    "market_inventory.MELON",
+    "market_inventory.MILK",
+    "market_inventory.STRAWBERRY",
+    "market_inventory.TOMATO",
+    "market_inventory.WHEAT",
+    "market_inventory.WOOL",
+    "opp.animal.COW",
+    "opp.animal.GOOSE",
+    "opp.animal.SHEEP",
+    "opp.cared",
+    "opp.crop.CARROT",
+    "opp.crop.MELON",
+    "opp.crop.STRAWBERRY",
+    "opp.crop.TOMATO",
+    "opp.crop.WHEAT",
+    "opp.fed",
+    "opp.fertilizer_available",
+    "opp.hands",
+    "opp.hires_today",
+    "opp.lands",
+    "opp.money",
+    "opp.pos_x_mean",
+    "opp.pos_x_span",
+    "opp.pos_y_mean",
+    "opp.pos_y_span",
+    "opp.tile.COOP",
+    "opp.tile.EMPTY",
+    "opp.tile.LOCKED",
+    "opp.tile.PASTURE",
+    "opp.tile.PLANT",
+    "opp.tile.WEED",
+    "opp.uncared",
+    "opp.unfed",
+    "opp.unwatered",
+    "opp.watered",
+    "opp.yield_sum",
+    "price.CARROT",
+    "price.EGG",
+    "price.FERTILIZER",
+    "price.MELON",
+    "price.MILK",
+    "price.STRAWBERRY",
+    "price.TOMATO",
+    "price.WHEAT",
+    "price.WOOL",
+    "seat",
+    "seed.CARROT",
+    "seed.MELON",
+    "seed.STRAWBERRY",
+    "seed.TOMATO",
+    "seed.WHEAT",
+    "self.animal.COW",
+    "self.animal.GOOSE",
+    "self.animal.SHEEP",
+    "self.cared",
+    "self.crop.CARROT",
+    "self.crop.MELON",
+    "self.crop.STRAWBERRY",
+    "self.crop.TOMATO",
+    "self.crop.WHEAT",
+    "self.fed",
+    "self.fertilizer_available",
+    "self.hands",
+    "self.hires_today",
+    "self.lands",
+    "self.money",
+    "self.pos_x_mean",
+    "self.pos_x_span",
+    "self.pos_y_mean",
+    "self.pos_y_span",
+    "self.tile.COOP",
+    "self.tile.EMPTY",
+    "self.tile.LOCKED",
+    "self.tile.PASTURE",
+    "self.tile.PLANT",
+    "self.tile.WEED",
+    "self.uncared",
+    "self.unfed",
+    "self.unwatered",
+    "self.watered",
+    "self.yield_sum",
+    "shed.CARROT",
+    "shed.COW",
+    "shed.EGG",
+    "shed.FERTILIZER",
+    "shed.GOOSE",
+    "shed.MELON",
+    "shed.MILK",
+    "shed.SHEEP",
+    "shed.STRAWBERRY",
+    "shed.TOMATO",
+    "shed.WHEAT",
+    "shed.WOOL",
+    "shop.BAKERY",
+    "shop.BRUNCH_SPOT",
+    "shop.FARMERS_MARKET",
+    "shop.ICE_CREAM_SHOP",
+    "shop.PET_CAFE",
+    "shop.PIZZA_SHOP",
+    "shop.SMOOTHIE_SHOP",
+    "shop.YARN_STORE",
+    "shop_count",
+    "step"
+  ],
+  "training_samples": 94,
+  "training_episodes": 47
+}
